@@ -1,0 +1,276 @@
+/*
+  Integrantes:
+  Anton Betak Licea
+  Argenis Emanuel Aragón Lopez
+  Alexei Romero Martinez
+*/
+
+:root {
+  color: #16211f;
+  background: #edf1ec;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.pagina {
+  display: grid;
+  grid-template-columns: minmax(340px, 420px) 1fr;
+  min-height: 100vh;
+}
+
+.panel {
+  background: #f8faf7;
+  border-right: 1px solid #d7ded3;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 28px;
+  overflow: auto;
+}
+
+.encabezado-panel {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.subtitulo {
+  color: #607069;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 1rem;
+}
+
+.boton-icono,
+.boton-principal,
+.selector-punto button {
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.boton-icono {
+  aspect-ratio: 1;
+  background: #e5ebe2;
+  border-radius: 8px;
+  color: #25332f;
+  width: 38px;
+}
+
+.formulario-ruta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.selector-punto {
+  background: #e5ebe2;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 4px;
+}
+
+.selector-punto button {
+  background: transparent;
+  border-radius: 6px;
+  color: #40514b;
+  gap: 8px;
+  min-height: 38px;
+}
+
+.selector-punto button.activo {
+  background: #ffffff;
+  color: #0f766e;
+  box-shadow: 0 1px 4px rgb(22 33 31 / 12%);
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label {
+  color: #51615a;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.82rem;
+  font-weight: 700;
+  gap: 7px;
+}
+
+input,
+select {
+  background: #ffffff;
+  border: 1px solid #cfd8cb;
+  border-radius: 8px;
+  color: #16211f;
+  min-height: 42px;
+  outline: none;
+  padding: 0 12px;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgb(15 118 110 / 16%);
+}
+
+.boton-principal {
+  background: #0f766e;
+  border-radius: 8px;
+  color: #ffffff;
+  gap: 10px;
+  min-height: 46px;
+  padding: 0 18px;
+}
+
+.boton-principal:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.girar {
+  animation: girar 0.8s linear infinite;
+}
+
+.aviso {
+  border-radius: 8px;
+  font-size: 0.9rem;
+  padding: 12px;
+}
+
+.error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.resultados {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.integrantes {
+  border-top: 1px solid #d7ded3;
+  color: #51615a;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.integrantes strong {
+  color: #16211f;
+}
+
+.tarjeta-ruta {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d7ded3;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 12px 1fr;
+  gap: 12px;
+  padding: 14px;
+}
+
+.tarjeta-ruta p {
+  color: #5c6b65;
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.color-ruta {
+  border-radius: 999px;
+  height: 56px;
+  width: 8px;
+}
+
+.zona-mapa {
+  min-height: 100vh;
+}
+
+#mapa {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.leaflet-container {
+  background: #dfe7dc;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 860px) {
+  .pagina {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    border-right: 0;
+    border-bottom: 1px solid #d7ded3;
+    padding: 20px;
+  }
+
+  .zona-mapa,
+  #mapa {
+    min-height: 58vh;
+  }
+}
+
+@media (max-width: 520px) {
+  .campos {
+    grid-template-columns: 1fr;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+}
