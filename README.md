@@ -17,6 +17,14 @@ Aplicacion web para calcular y visualizar rutas rapidas entre dos puntos geograf
 - API REST documentada automaticamente en `/docs`.
 - Mapa interactivo con seleccion por coordenadas o clic.
 
+## Capturas
+## Capturas
+
+   ![Ruta con Dijkstra](docs/frontend-dijkstra.png)
+   ![Ruta con A*](docs/frontend-astar.png)
+   ![K rutas alternativas](docs/interfaz-k-rutas.png)
+   ![Swagger docs](docs/swagger-docs.png)
+
 ## Estructura
 
 ```text
@@ -150,12 +158,6 @@ npm run dev
 ```
 
 La aplicacion queda disponible normalmente en `http://127.0.0.1:5173`.
-
-## Entrega en GitHub
-
-1. Crear un repositorio privado.
-2. Subir este proyecto.
-3. Compartir el repositorio con el usuario `pdanielvazquez`.
 
 ## Analisis algoritmico
 
