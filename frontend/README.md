@@ -4,47 +4,50 @@
 
 - Anton Betak Licea
 - Argenis Emanuel Aragón Lopez
-- Alexei Romero Martinez
+- Cristian Alexei Romero Martínez
 
-Aplicacion React con Leaflet para visualizar rutas optimas sobre un mapa interactivo.
+Aplicación React con Leaflet para visualizar rutas óptimas sobre un mapa interactivo.
 
-## Instalacion
+## Instalación
 
 ```bash
 npm install
 ```
 
-## Ejecucion
+## Ejecución
 
 ```bash
 npm run dev
 ```
 
-La aplicacion queda disponible en:
+La aplicación queda disponible en:
 
-```text
-http://127.0.0.1:5173
-```
+> http://127.0.0.1:5173
 
 ## Uso
 
 1. Escribir latitud y longitud de origen.
 2. Escribir latitud y longitud de destino.
-3. Elegir algoritmo: Dijkstra, A* o k rutas mas cortas.
-4. Si se usa k rutas mas cortas, elegir el numero de rutas.
+3. Elegir algoritmo: Dijkstra, A* o *k rutas más cortas*.
+4. Si se usa *k rutas más cortas*, elegir el número de rutas.
 5. Presionar `Calcular ruta`.
 6. Revisar distancia y tiempo estimado en el panel.
 
-Tambien se puede seleccionar si el siguiente clic en el mapa modifica el origen o el destino.
+También se puede seleccionar si el siguiente
+clic en el mapa modifica el origen o el destino.
 
-## Capturas sugeridas para entrega
+## Capturas seleccionadas para la entrega
 
-Guarda capturas antes de entregar:
+Capturas de pantalla:
 
 - `frontend-dijkstra.png`: ruta calculada con Dijkstra.
+![frontend-dijkstra.png](../docs/frontend-dijkstra.png)
 - `frontend-astar.png`: ruta calculada con A*.
-- `interfaz-k-rutas.png`: multiples rutas alternativas.
-- `swagger-docs.png`: documentacion automatica de FastAPI en `/docs`.
+![frontend-astar.png](../docs/frontend-astar.png)
+- `frontend-k-rutas.png`: multiples rutas alternativas.
+![frontend-k-rutas.png](../docs/frontend-k-routes.png)
+- `swagger-docs.png`: documentación automática de FastAPI en `/docs`.
+![swagger-docs.png](../docs/swagger-docs.png)
 
 ## Variables de entorno
 
