@@ -1,29 +1,28 @@
-# Rutas optimas con grafos viales reales
+# Rutas óptimas con grafos viales reales
 
 ## Integrantes
 
 - Anton Betak Licea
 - Argenis Emanuel Aragón Lopez
-- Alexei Romero Martinez
+- Cristian Alexei Romero Martínez
 
-Aplicacion web para calcular y visualizar rutas rapidas entre dos puntos geograficos usando grafos de redes viales reales. El servidor usa FastAPI, OSMnx y NetworkX; la interfaz usa React y Leaflet.
+Aplicación web para calcular y visualizar rutas rápidas entre dos puntos geográficos usando grafos de redes viales reales. El servidor usa FastAPI, OSMnx y NetworkX; la interfaz usa React y Leaflet.
 
-## Caracteristicas
+## Características
 
 - Descarga de red vial real de una ciudad mexicana con OSMnx.
 - Modelado de la red como grafo NetworkX.
-- Calculo de rutas con Dijkstra, A* y k rutas mas cortas.
+- Cálculo de rutas con Dijkstra, A* y k rutas más cortas.
 - Distancia total y tiempo estimado de recorrido.
-- API REST documentada automaticamente en `/docs`.
-- Mapa interactivo con seleccion por coordenadas o clic.
+- API REST documentada automáticamente en `/docs`.
+- Mapa interactivo con selección por coordenadas o clic.
 
 ## Capturas
-## Capturas
 
-   ![Ruta con Dijkstra](docs/frontend-dijkstra.png)
-   ![Ruta con A*](docs/frontend-astar.png)
-   ![K rutas alternativas](docs/interfaz-k-rutas.png)
-   ![Swagger docs](docs/swagger-docs.png)
+![Ruta con Dijkstra](docs/frontend-dijkstra.png)
+![Ruta con A*](docs/frontend-astar.png)
+![K rutas alternativas](docs/frontend-k-routes.png)
+![Swagger docs](docs/swagger-docs.png)
 
 ## Estructura
 
@@ -48,7 +47,7 @@ Aplicacion web para calcular y visualizar rutas rapidas entre dos puntos geograf
 
 ## Servidor
 
-### Instalacion
+### Instalación
 
 ```bash
 cd backend
@@ -57,13 +56,13 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Ejecucion
+### Ejecución
 
 ```bash
 fastapi dev app/main.py
 ```
 
-Tambien puedes usar:
+También puedes usar:
 
 ```bash
 uvicorn app.main:app --reload
@@ -71,17 +70,17 @@ uvicorn app.main:app --reload
 
 La API queda disponible en `http://127.0.0.1:8000`.
 
-### Configuracion opcional
+### Configuración opcional
 
 Variables de entorno soportadas:
 
-| Variable | Valor por defecto | Descripcion |
-|---|---:|---|
-| `ROUTING_PLACE_NAME` | `Guadalajara, Jalisco, Mexico` | Ciudad a descargar desde OSMnx |
-| `ROUTING_NETWORK_TYPE` | `drive` | Tipo de red vial |
-| `ROUTING_DEFAULT_SPEED_KPH` | `40` | Velocidad usada cuando una arista no tiene velocidad |
+| Variable                    |              Valor por defecto | Descripcion                                          |
+|-----------------------------|-------------------------------:|------------------------------------------------------|
+| `ROUTING_PLACE_NAME`        | `Guadalajara, Jalisco, Mexico` | Ciudad a descargar desde OSMnx                       |
+| `ROUTING_NETWORK_TYPE`      |                        `drive` | Tipo de red vial                                     |
+| `ROUTING_DEFAULT_SPEED_KPH` |                           `40` | Velocidad usada cuando una arista no tiene velocidad |
 
-La primera ejecucion puede tardar porque descarga la red vial. Despues se guarda cache en `backend/.cache/osmnx`.
+La primera ejecución puede tardar porque descarga la red vial. Después se guarda caché en `backend/.cache/osmnx`.
 
 ## Endpoints
 
@@ -125,7 +124,7 @@ Respuesta:
 
 ### Endpoints por algoritmo
 
-Tambien existen endpoints independientes:
+También existen endpoints independientes:
 
 - `POST /ruta/dijkstra`
 - `POST /ruta/astar`
@@ -144,23 +143,43 @@ curl -X POST http://127.0.0.1:8000/ruta/dijkstra \
 
 ## Interfaz
 
-### Instalacion
+### Instalación
 
 ```bash
 cd frontend
 npm install
 ```
 
-### Ejecucion
+### Ejecución
 
 ```bash
 npm run dev
 ```
 
-La aplicacion queda disponible normalmente en `http://127.0.0.1:5173`.
+La aplicación queda disponible normalmente en `http://127.0.0.1:5173`.
 
-## Analisis algoritmico
+## Análisis algorítmico
 
-- **Dijkstra** garantiza el camino mas corto con pesos no negativos. Es robusto, pero puede explorar muchas zonas del grafo.
-- **A\*** usa una heuristica geografica basada en distancia euclidiana aproximada. En redes viales suele explorar menos nodos cuando la heuristica aproxima bien la direccion al destino.
-- **k rutas mas cortas** devuelve varias alternativas ordenadas por costo. Es util para comparar rutas cercanas, aunque cuesta mas computacionalmente porque busca multiples caminos simples.
+- **Dijkstra** garantiza el camino más corto con pesos no negativos. Es robusto, pero puede explorar muchas zonas del grafo.
+- __A\*__ usa una heurística geográfica basada en distancia euclidiana aproximada. En redes viales suele explorar menos nodos cuando la heurística aproxima bien la dirección al destino.
+- **k rutas más cortas** devuelve varias alternativas ordenadas por costo. Es util para comparar rutas cercanas, aunque cuesta más computacionalmente porque busca multiples caminos simples.
+-
+### Información comparativa de los algoritmos
+
+| Algoritmo | Complejidad temporal | Espacio auxiliar | Notas                                            |
+|-----------|----------------------|------------------|--------------------------------------------------|
+| Dijkstra  | O((V + E) log V)     | O(V + E)         | No tan rápido, pero consistente.                 |
+| A*        | O(E log V)           | O(V)             | Rápido, pero puede degenerarse en algunos casos. |
+| K Rutas   | O(KV(E + V log V))   | o(K N) + V       | Lento, pero genera múltiples soluciones válidas. | 
+
+Donde E = aristas, V = vertices y K = caminos.
+
+#### Referencias
+
+GeeksforGeeks (21 de enero de 2026) *Dijkstra's Algorithm*. https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
+
+GeeksforGeeks (23 de julio de 2025) *A\* Search Algorithm*. https://www.geeksforgeeks.org/dsa/a-search-algorithm/
+
+Coudert, D., D'Ascenzo, A. y Rambaud, C. (2025).
+k-shortest simple paths in bounded treewidth graphs, *Theoretical Computer Science*,
+1039(115182), ISSN 0304-3975, https://doi.org/10.1016/j.tcs.2025.115182.

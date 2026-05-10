@@ -1,14 +1,14 @@
-# Servidor - API de rutas optimas
+# Servidor - API de rutas óptimas
 
 ## Integrantes
 
 - Anton Betak Licea
 - Argenis Emanuel Aragón Lopez
-- Alexei Romero Martinez
+- Cristian Alexei Romero Martínez
 
 Servicio REST construido con FastAPI, OSMnx y NetworkX.
 
-## Instalacion
+## Instalación
 
 ```bash
 python3 -m venv .venv
@@ -16,27 +16,26 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Ejecucion
+## Ejecución
 
 ```bash
 uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-La documentacion interactiva queda en:
+La documentación interactiva queda en:
 
-```text
-http://127.0.0.1:8000/docs
-```
+
+> http://127.0.0.1:8000/docs
 
 ## Endpoints
 
-| Metodo | Ruta | Descripcion |
-|---|---|---|
-| `GET` | `/estado` | Verifica que la API este activa |
-| `POST` | `/ruta` | Calcula ruta usando el algoritmo indicado |
-| `POST` | `/ruta/dijkstra` | Calcula ruta con Dijkstra |
-| `POST` | `/ruta/astar` | Calcula ruta con A* |
-| `POST` | `/ruta/k-rutas` | Calcula multiples rutas alternativas |
+| Metodo | Ruta             | Descripcion                               |
+|--------|------------------|-------------------------------------------|
+| `GET`  | `/estado`        | Verifica que la API este activa           |
+| `POST` | `/ruta`          | Calcula ruta usando el algoritmo indicado |
+| `POST` | `/ruta/dijkstra` | Calcula ruta con Dijkstra                 |
+| `POST` | `/ruta/astar`    | Calcula ruta con A*                       |
+| `POST` | `/ruta/k-rutas`  | Calcula multiples rutas alternativas      |
 
 ## Ejemplo de solicitud
 
@@ -73,3 +72,23 @@ http://127.0.0.1:8000/docs
 - Longitud entre `-180` y `180`.
 - `k` entre `1` y `5`.
 - Manejo de error cuando no existe ruta.
+
+## Información comparativa de los algoritmos
+
+| Algoritmo | Complejidad temporal | Espacio auxiliar | Notas                                            |
+|-----------|----------------------|------------------|--------------------------------------------------|
+| Dijkstra  | O((V + E) log V)     | O(V + E)         | No tan rápido, pero consistente.                 |
+| A*        | O(E log V)           | O(V)             | Rápido, pero puede degenerarse en algunos casos. |
+| K Rutas   | O(KV(E + V log V))   | o(K N) + V       | Lento, pero genera múltiples soluciones válidas. | 
+
+Donde E = aristas, V = vertices y K = caminos.
+
+#### Referencias
+
+GeeksforGeeks (21 de enero de 2026) *Dijkstra's Algorithm*. https://www.geeksforgeeks.org/dsa/dijkstras-shortest-path-algorithm-greedy-algo-7/
+
+GeeksforGeeks (23 de julio de 2025) *A\* Search Algorithm*. https://www.geeksforgeeks.org/dsa/a-search-algorithm/
+
+Coudert, D., D'Ascenzo, A. y Rambaud, C. (2025).
+k-shortest simple paths in bounded treewidth graphs, *Theoretical Computer Science*, 
+1039(115182), ISSN 0304-3975, https://doi.org/10.1016/j.tcs.2025.115182.
